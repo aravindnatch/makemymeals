@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Meal Maker</title>
+    <meta name="description" content="Take a picture of your ingredient, choose your favorite recipe,
+    and be guided along the shortest path in the store."/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,800" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.css') }}">
+</head>
+<body>
+
+<!--Header Section-->
+
+<section class="bg-gradient">
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-8 mx-auto text-center">
+                <h1>Make My Meal</h1>
+                <p class="lead mb-5">
+                    Simply take a picture of your ingredient, choose your favorite recipe,
+                    and be guided along the shortest path in the store.</p>
+
+                <form method="POST" action="/recipe" enctype="multipart/form-data">
+                    <input type="file" name='file' onchange="form.submit()" id="upload" accept=".png,.jpg" hidden/>
+                    <label for="upload" class="btn btn-success svg-icon">                    
+                        <em class="mr-2" data-feather="camera"></em>
+                        Take Picture
+                    </label>
+                </form>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-9 mx-auto">
+                <div class="code-window">
+                    <div class="dots">
+                        <div class="red"></div>
+                        <div class="orange"></div>
+                        <div class="green"></div>
+                    </div>
+                    <pre class="language-javascript">
+                        <p id="demo"></p>
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    var i = 0;
+    var txt = `Matched Recipes:
+    1. Chocolate Cake 
+    2. Pancakes
+    3. Apple Pie
+    4. Brownies
+    5. Pudding
+    6. Apple Pastry`;
+
+    var speed = 50;
+    typeWriter()
+    
+    function typeWriter() {
+      if (i < txt.length) {
+        document.getElementById("demo").innerHTML += txt.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+      }
+    }
+</script>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.7.3/feather.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script src="{{ url_for('static',filename='js/scripts.js') }}"></script>
+</body>
+</html>
