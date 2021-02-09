@@ -142,7 +142,7 @@ def storemap():
     insidemap = [75,222,370]
 
     # create image with path__
-    base = Image.open("og.jpg").convert("RGBA")
+    base = Image.open("original.jpg").convert("RGBA")
 
     # make a blank image for the text, initialized to transparent text color
     txt = Image.new("RGBA", base.size, (255,255,255,0))
@@ -157,7 +157,7 @@ def storemap():
 
     x = int(ncrData[ingredient][0])
     y = int(ncrData[ingredient][1])
-    d.text((insidemap[y]-2,aislecoords[x]-3), '★', font=fnt2, fill=(0, 0, 0,255))
+    d.text((insidemap[y]-2,aislecoords[x]-3), '?', font=fnt2, fill=(0, 0, 0,255))
     d.line([(570, 628), (570, 35)], fill=(128, 180, 251,255), width=7, joint=None)
 
     #d.line([(95, 38), (202, 38)], fill=(255, 80, 80,255), width=7, joint=None)
@@ -199,8 +199,7 @@ def storemap():
     out = Image.alpha_composite(base, txt)
     outfile = str(time.time()).split(".")[0]
     out.save(f'static/new_images/{outfile}.png', 'PNG')
-    outfile = 'new_images/' + str(time.time()).split(".")[0] + '.png'
-
+    outfile = 'new_images/' + outfile + '.png'
 
     temp2arr = []
     temp2arr.append(int(ncrData[ingredient][0]))
